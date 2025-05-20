@@ -45,6 +45,9 @@ buildNumber.properties
 *.iws
 *.iml
 *.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
 
 ### NetBeans ###
 /nbproject/private/
@@ -110,3 +113,54 @@ dist-ssr
 ### System Files ###
 .DS_Store
 Thumbs.db
+
+### Backend (Spring Boot) ###
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### Application Properties ###
+src/main/resources/application.properties
+src/main/resources/application-*.properties
+src/main/resources/application.yml
+src/main/resources/application-*.yml
+
+### Frontend (React) ###
+# Dependencies
+/frontend/node_modules
+/frontend/.pnp
+/frontend/.pnp.js
+
+# Testing
+/frontend/coverage
+
+# Production
+/frontend/build
+/frontend/dist
+
+# Misc
+/frontend/.DS_Store
+/frontend/.env.local
+/frontend/.env.development.local
+/frontend/.env.test.local
+/frontend/.env.production.local
+/frontend/npm-debug.log*
+/frontend/yarn-debug.log*
+/frontend/yarn-error.log*
+/frontend/.env
+
+# IDE
+/frontend/.idea
+/frontend/.vscode
+/frontend/*.swp
+/frontend/*.swo
+
+### System Files ###
+.DS_Store
+Thumbs.db
+*.log
+*.pid
+*.seed
+*.pid.lock
