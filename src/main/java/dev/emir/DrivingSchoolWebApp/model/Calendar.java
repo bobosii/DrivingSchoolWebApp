@@ -1,5 +1,6 @@
 package dev.emir.DrivingSchoolWebApp.model;
 
+import dev.emir.DrivingSchoolWebApp.enums.CalendarStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,18 +30,18 @@ public class Calendar {
     @JoinColumn(name = "course_id")
     private Course course;
 
-    @Column(name = "event_date", nullable = false)
-    private LocalDateTime eventDate;
+    @Column(name = "start_time", nullable = false)
+    private LocalDateTime startTime;
 
-    @Column(nullable = false)
-    private String title;
-
-    @Column(columnDefinition = "TEXT")
-    private String description;
+    @Column(name = "end_time", nullable = false)
+    private LocalDateTime endTime;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private CalendarStatus status;
+
+    @Column
+    private String notes;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
@@ -57,12 +58,5 @@ public class Calendar {
     @PreUpdate
     protected void onUpdate() {
         updatedAt = LocalDateTime.now();
-    }
-
-    public enum CalendarStatus {
-        SCHEDULED,
-        IN_PROGRESS,
-        COMPLETED,
-        CANCELLED
     }
 } 

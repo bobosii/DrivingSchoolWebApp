@@ -1,5 +1,6 @@
 package dev.emir.DrivingSchoolWebApp.model;
 
+import dev.emir.DrivingSchoolWebApp.enums.SettingType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -45,14 +46,5 @@ public class Setting {
     @PreUpdate
     protected void onUpdate() {
         updatedAt = LocalDateTime.now();
-    }
-
-    public enum SettingType {
-        SYSTEM,
-        COURSE,
-        PAYMENT,
-        NOTIFICATION,
-        SCHEDULE,
-        EXAM
     }
 } 

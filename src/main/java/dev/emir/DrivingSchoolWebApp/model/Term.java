@@ -1,5 +1,6 @@
 package dev.emir.DrivingSchoolWebApp.model;
 
+import dev.emir.DrivingSchoolWebApp.enums.TermStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,8 +19,21 @@ public class Term {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "course_id")
+    private Course course;
+
+    @ManyToOne
+    @JoinColumn(name = "instructor_id")
+    private Instructor instructor;
+
+    @ManyToOne
+    @JoinColumn(name = "student_id")
+    private Student student;
+
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private String name;
+    private TermStatus status;
 
     @Column(name = "start_date", nullable = false)
     private LocalDateTime startDate;
@@ -27,9 +41,8 @@ public class Term {
     @Column(name = "end_date", nullable = false)
     private LocalDateTime endDate;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private TermStatus status;
+    @Column(columnDefinition = "TEXT")
+    private String notes;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
@@ -46,12 +59,5 @@ public class Term {
     @PreUpdate
     protected void onUpdate() {
         updatedAt = LocalDateTime.now();
-    }
-
-    public enum TermStatus {
-        ACTIVE,
-        COMPLETED,
-        CANCELLED,
-        UPCOMING
     }
 } 

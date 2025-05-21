@@ -1,5 +1,6 @@
 package dev.emir.DrivingSchoolWebApp.model;
 
+import dev.emir.DrivingSchoolWebApp.enums.FeedbackType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,26 +19,26 @@ public class Feedback {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "student_id", nullable = false)
+    @JoinColumn(name = "student_id")
     private Student student;
 
     @ManyToOne
-    @JoinColumn(name = "instructor_id", nullable = false)
+    @JoinColumn(name = "instructor_id")
     private Instructor instructor;
 
     @ManyToOne
-    @JoinColumn(name = "course_id", nullable = false)
+    @JoinColumn(name = "course_id")
     private Course course;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private FeedbackType type;
 
-    @Column(nullable = false, columnDefinition = "TEXT")
-    private String content;
-
     @Column(nullable = false)
     private Integer rating;
+
+    @Column(columnDefinition = "TEXT")
+    private String comment;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
@@ -54,12 +55,5 @@ public class Feedback {
     @PreUpdate
     protected void onUpdate() {
         updatedAt = LocalDateTime.now();
-    }
-
-    public enum FeedbackType {
-        COURSE,
-        INSTRUCTOR,
-        FACILITY,
-        GENERAL
     }
 } 

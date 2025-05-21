@@ -1,5 +1,7 @@
 package dev.emir.DrivingSchoolWebApp.model;
 
+import dev.emir.DrivingSchoolWebApp.enums.ExamType;
+import dev.emir.DrivingSchoolWebApp.enums.ExamStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,19 +23,16 @@ public class Exam {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "student_id", nullable = false)
+    @JoinColumn(name = "student_id")
     private Student student;
 
     @ManyToOne
-    @JoinColumn(name = "instructor_id", nullable = false)
+    @JoinColumn(name = "instructor_id")
     private Instructor instructor;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private ExamType type;
-
-    @Column(nullable = false)
-    private Integer score;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -41,6 +40,12 @@ public class Exam {
 
     @Column(name = "exam_date", nullable = false)
     private LocalDateTime examDate;
+
+    @Column
+    private Double score;
+
+    @Column(columnDefinition = "TEXT")
+    private String notes;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
@@ -57,19 +62,5 @@ public class Exam {
     @PreUpdate
     protected void onUpdate() {
         updatedAt = LocalDateTime.now();
-    }
-
-    public enum ExamType {
-        THEORETICAL,
-        PRACTICAL,
-        FINAL
-    }
-
-    public enum ExamStatus {
-        SCHEDULED,
-        IN_PROGRESS,
-        COMPLETED,
-        FAILED,
-        CANCELLED
     }
 } 

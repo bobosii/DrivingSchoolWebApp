@@ -1,5 +1,6 @@
 package dev.emir.DrivingSchoolWebApp.model;
 
+import dev.emir.DrivingSchoolWebApp.enums.StatisticsType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -48,14 +49,5 @@ public class Statistics {
     @PreUpdate
     protected void onUpdate() {
         updatedAt = LocalDateTime.now();
-    }
-
-    public enum StatisticsType {
-        STUDENT,
-        INSTRUCTOR,
-        COURSE,
-        FINANCIAL,
-        EXAM,
-        ATTENDANCE
     }
 } 

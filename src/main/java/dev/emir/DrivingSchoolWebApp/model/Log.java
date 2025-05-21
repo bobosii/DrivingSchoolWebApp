@@ -1,5 +1,7 @@
 package dev.emir.DrivingSchoolWebApp.model;
 
+import dev.emir.DrivingSchoolWebApp.enums.LogType;
+import dev.emir.DrivingSchoolWebApp.enums.LogStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,42 +20,37 @@ public class Log {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id")
     private User user;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private LogType type;
 
-    @Column(nullable = false)
-    private String action;
-
-    @Column(nullable = false, columnDefinition = "TEXT")
-    private String details;
-
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private LogStatus status;
 
+    @Column(nullable = false)
+    private String message;
+
+    @Column(columnDefinition = "TEXT")
+    private String details;
+
     @Column(name = "created_at")
     private LocalDateTime createdAt;
+
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
 
     @PrePersist
     protected void onCreate() {
         createdAt = LocalDateTime.now();
+        updatedAt = LocalDateTime.now();
     }
 
-    public enum LogType {
-        SYSTEM,
-        USER,
-        SECURITY,
-        ERROR
-    }
-
-    public enum LogStatus {
-        SUCCESS,
-        WARNING,
-        ERROR,
-        INFO
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = LocalDateTime.now();
     }
 } 
