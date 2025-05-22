@@ -19,22 +19,20 @@ public class Notification {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private NotificationType type;
+    @JoinColumn(name = "student_id", nullable = false)
+    private Student student;
 
     @Column(nullable = false)
     private String title;
 
     @Column(nullable = false, columnDefinition = "TEXT")
-    private String content;
+    private String message;
 
-    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private NotificationStatus status;
+    private String type;
+
+    @Column(name = "is_read", nullable = false)
+    private Boolean isRead = false;
 
     @Column(name = "read_at")
     private LocalDateTime readAt;
@@ -54,20 +52,5 @@ public class Notification {
     @PreUpdate
     protected void onUpdate() {
         updatedAt = LocalDateTime.now();
-    }
-
-    public enum NotificationType {
-        SYSTEM,
-        COURSE,
-        APPOINTMENT,
-        PAYMENT,
-        DOCUMENT,
-        MESSAGE
-    }
-
-    public enum NotificationStatus {
-        UNREAD,
-        READ,
-        ARCHIVED
     }
 } 

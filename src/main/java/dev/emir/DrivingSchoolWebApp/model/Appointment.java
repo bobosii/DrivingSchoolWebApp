@@ -1,5 +1,6 @@
 package dev.emir.DrivingSchoolWebApp.model;
 
+import dev.emir.DrivingSchoolWebApp.enums.AppointmentType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -42,6 +43,9 @@ public class Appointment {
 
     @Column(name = "status", nullable = false)
     private String status; // PENDING, APPROVED, REJECTED, COMPLETED, CANCELLED
+
+    @Column(columnDefinition = "TEXT")
+    private String notes;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;

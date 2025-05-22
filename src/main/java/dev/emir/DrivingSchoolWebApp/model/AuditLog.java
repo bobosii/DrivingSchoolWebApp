@@ -19,8 +19,8 @@ public class AuditLog {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @JoinColumn(name = "employee_id", nullable = false)
+    private Employee employee;
 
     @Column(nullable = false)
     private String action;
@@ -31,14 +31,11 @@ public class AuditLog {
     @Column(name = "entity_id", nullable = false)
     private Long entityId;
 
-    @Column(name = "old_value")
+    @Column(name = "old_value", columnDefinition = "TEXT")
     private String oldValue;
 
-    @Column(name = "new_value")
+    @Column(name = "new_value", columnDefinition = "TEXT")
     private String newValue;
-
-    @Column(name = "ip_address")
-    private String ipAddress;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;

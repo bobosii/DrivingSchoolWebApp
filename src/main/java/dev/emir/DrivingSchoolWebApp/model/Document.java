@@ -19,32 +19,23 @@ public class Document {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "student_id")
+    @JoinColumn(name = "student_id", nullable = false)
     private Student student;
 
-    @ManyToOne
-    @JoinColumn(name = "instructor_id")
-    private Instructor instructor;
-
-    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private DocumentType type;
+    private String name;
 
     @Column(nullable = false)
-    private String fileName;
+    private String type;
 
     @Column(nullable = false)
     private String filePath;
 
-    @Column(nullable = false)
-    private String mimeType;
+    @Column(columnDefinition = "TEXT")
+    private String description;
 
-    @Column(nullable = false)
-    private Long fileSize;
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private DocumentStatus status;
+    @Column(name = "expiry_date")
+    private LocalDateTime expiryDate;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
@@ -61,21 +52,5 @@ public class Document {
     @PreUpdate
     protected void onUpdate() {
         updatedAt = LocalDateTime.now();
-    }
-
-    public enum DocumentType {
-        IDENTITY_CARD,
-        DRIVING_LICENSE,
-        MEDICAL_REPORT,
-        PHOTO,
-        CERTIFICATE,
-        OTHER
-    }
-
-    public enum DocumentStatus {
-        PENDING,
-        APPROVED,
-        REJECTED,
-        EXPIRED
     }
 } 

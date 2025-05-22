@@ -26,17 +26,26 @@ public class Payment {
     @Column(nullable = false)
     private BigDecimal amount;
 
-    @Column(name = "payment_date", nullable = false)
-    private LocalDateTime paymentDate;
+    @Column(nullable = false)
+    private String currency;
 
-    @Column(name = "payment_method", nullable = false)
+    @Column(nullable = false)
+    private String status;
+
+    @Column(name = "payment_method")
     private String paymentMethod;
 
     @Column(name = "transaction_id")
     private String transactionId;
 
-    @Column(name = "payment_status", nullable = false)
-    private String paymentStatus;
+    @Column(columnDefinition = "TEXT")
+    private String description;
+
+    @Column(nullable = false)
+    private String type;
+
+    @Column(name = "payment_date", nullable = false)
+    private LocalDateTime paymentDate;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;

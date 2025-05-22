@@ -1,5 +1,6 @@
 package dev.emir.DrivingSchoolWebApp.model;
 
+import dev.emir.DrivingSchoolWebApp.enums.EnrollmentStatus;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;

@@ -21,10 +21,6 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "instructor_id", nullable = false)
-    private Instructor instructor;
-
     @Column(nullable = false)
     private String name;
 
@@ -33,15 +29,11 @@ public class Course {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private CourseType type;
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
     private CourseStatus status;
 
     @ManyToOne
-    @JoinColumn(name = "term_id", nullable = false)
-    private Term term;
+    @JoinColumn(name = "licence_class_id")
+    private LicenceClass licenceClass;
 
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
     private List<CourseSession> sessions = new ArrayList<>();

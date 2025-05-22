@@ -1,5 +1,6 @@
 package dev.emir.DrivingSchoolWebApp.model;
 
+import dev.emir.DrivingSchoolWebApp.enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,11 +24,8 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String firstName;
-
-    @Column(nullable = false)
-    private String lastName;
+    @Column(nullable = false, unique = true)
+    private String username;
 
     @Column(nullable = false, unique = true)
     private String email;
@@ -35,17 +33,24 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
+    @Column(name = "first_name", nullable = false)
+    private String firstName;
+
+    @Column(name = "last_name", nullable = false)
+    private String lastName;
+
+    @Column(name = "phone_number")
     private String phoneNumber;
+
+    @Column(name = "profile_picture")
+    private String profilePicture;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private RoleType role;
+    private Role role;
 
-    private boolean enabled = true;
-    private boolean accountNonExpired = true;
-    private boolean accountNonLocked = true;
-    private boolean credentialsNonExpired = true;
+    @Column(name = "is_active", nullable = false)
+    private Boolean isActive = true;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
@@ -66,31 +71,26 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("ROLE_" + role.name()));
-    }
-
-    @Override
-    public String getUsername() {
-        return email;
+        return List.of(new SimpleGrantedAuthority(role.name()));
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return accountNonExpired;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return accountNonLocked;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return credentialsNonExpired;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return enabled;
+        return isActive;
     }
 } 

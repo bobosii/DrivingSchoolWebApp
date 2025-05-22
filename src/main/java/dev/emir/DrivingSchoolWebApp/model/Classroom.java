@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -24,8 +26,14 @@ public class Classroom {
     @Column(nullable = false)
     private Integer capacity;
 
-    @Column(name = "is_available", nullable = false)
-    private Boolean isAvailable = true;
+    @Column
+    private String location;
+
+    @Column
+    private String description;
+
+    @OneToMany(mappedBy = "classroom")
+    private List<CourseSession> courseSessions = new ArrayList<>();
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;

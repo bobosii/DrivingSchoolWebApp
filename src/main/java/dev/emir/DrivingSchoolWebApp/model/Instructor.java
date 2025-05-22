@@ -27,14 +27,11 @@ public class Instructor {
     @Column(name = "identity_number", nullable = false, unique = true)
     private String identityNumber;
 
-    @Column(name = "expertise_areas")
-    private String expertiseAreas;
+    @OneToMany(mappedBy = "instructor")
+    private List<CourseSession> courseSessions = new ArrayList<>();
 
     @OneToMany(mappedBy = "instructor")
-    private List<Course> courses = new ArrayList<>();
-
-    @OneToMany(mappedBy = "instructor")
-    private List<CourseSession> sessions = new ArrayList<>();
+    private List<SimulatorSession> simulatorSessions = new ArrayList<>();
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;

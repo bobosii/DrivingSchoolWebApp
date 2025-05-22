@@ -18,21 +18,17 @@ public class Vehicle {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "plate_number", nullable = false, unique = true)
-    private String plateNumber;
-
     @Column(nullable = false)
     private String brand;
 
     @Column(nullable = false)
     private String model;
 
+    @Column(name = "license_plate", nullable = false, unique = true)
+    private String licensePlate;
+
     @Column(name = "year_of_manufacture", nullable = false)
     private Integer yearOfManufacture;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "vehicle_type", nullable = false)
-    private VehicleType vehicleType;
 
     @Column(name = "is_available", nullable = false)
     private Boolean isAvailable = true;

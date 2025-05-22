@@ -25,20 +25,21 @@ public class CourseSession {
     private Course course;
 
     @ManyToOne
-    @JoinColumn(name = "instructor_id")
+    @JoinColumn(name = "classroom_id", nullable = false)
+    private Classroom classroom;
+
+    @ManyToOne
+    @JoinColumn(name = "instructor_id", nullable = false)
     private Instructor instructor;
+
+    @ManyToMany(mappedBy = "courseSessions")
+    private List<Student> students = new ArrayList<>();
 
     @Column(name = "start_time", nullable = false)
     private LocalDateTime startTime;
 
     @Column(name = "end_time", nullable = false)
     private LocalDateTime endTime;
-
-    @Column(name = "max_capacity", nullable = false)
-    private Integer maxCapacity;
-
-    @OneToMany(mappedBy = "courseSession", cascade = CascadeType.ALL)
-    private List<StudentCourseSession> studentSessions = new ArrayList<>();
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
