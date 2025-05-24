@@ -9,5 +9,4 @@ public class DrivingSchoolWebAppApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(DrivingSchoolWebAppApplication.class, args);
 	}
-
 }
