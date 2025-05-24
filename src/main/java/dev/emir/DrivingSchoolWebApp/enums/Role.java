@@ -1,8 +1,8 @@
 package dev.emir.DrivingSchoolWebApp.enums;
 
 public enum Role {
-    ROLE_ADMIN,
-    ROLE_EMPLOYEE,
-    ROLE_INSTRUCTOR,
-    ROLE_STUDENT
+    ADMIN,      // System administrator
+    EMPLOYEE,   // Office staff
+    INSTRUCTOR, // Driving instructor
+    STUDENT     // Driving student
 } 
