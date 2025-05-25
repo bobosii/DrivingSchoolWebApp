@@ -1,0 +1,71 @@
+# === GLOBAL ===
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.swp
+*.bak
+
+# === JAVA / SPRING BOOT BACKEND ===
+/target/
+*.class
+*.jar
+*.war
+*.iml
+*.db
+*.h2.db
+*.log
+
+# IDE-specific files
+/.idea/
+/*.iws
+/*.ipr
+*.class
+*.project
+*.classpath
+/.settings/
+
+# Maven
+/logs/
+/dependency-reduced-pom.xml
+build/
+!src/main/resources/static/ # for frontend build output
+
+# Gradle
+.gradle/
+/build/
+/out/
+
+# === ENV / CONFIG SECRETS ===
+*.env
+.env.*
+application-*.properties
+application.properties
+application.yml
+application-*.yml
+
+# === NODE / REACT FRONTEND ===
+/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+/dist/
+/build/
+/coverage/
+/.env
+
+# === REACT TYPESCRIPT ===
+*.tsbuildinfo
+
+# === VSCODE ===
+.vscode/
+
+# === OS FILES ===
+ehthumbs.db
+Icon?
+Desktop.ini
+
+# === TEST / COVERAGE ===
+/coverage/
+/test-output/
+
